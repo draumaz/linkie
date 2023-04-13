@@ -6,12 +6,13 @@
 - ```export CONFIG_DOTS_REPO="$HOME/repos/plasma-configs"```
 
 ## install
+- replace ```/opt/local/bin``` with anything you want, as long as it's present in $PATH.
 ```
 curl -sL \
   https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
     tar -xpzf - \
       --strip-components=1 \
-      -C "/opt/local/bin/" \ # or somewhere else in your PATH.
+      -C "/opt/local/bin" \
       linkie-main/linkie
 ```
 
