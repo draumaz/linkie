@@ -10,7 +10,7 @@
 ```
 curl -sL \
   https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
-    tar -xpzf - \
+    tar -xpvzf - \
       --strip-components=1 \
       -C "/opt/local/bin" \
       linkie-main/linkie
