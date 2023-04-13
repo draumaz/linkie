@@ -1,9 +1,16 @@
 # linkie
-- linkie is a tool that helps you implement a symlink-based dotfile management system.
+- linkie is a tool that helps you implement a symlink-based ```~/.config``` dotfile management system.
 
 ## prepare
-- export a variable called CONFIG_DOTS_REPO, and point it to a repo containing your .config dotfiles.
-- ```export CONFIG_DOTS_REPO="$HOME/repos/plasma-configs"```
+```
+[~/remote-repos/plasma] $ export CONFIG_DOTS_REPO="/the/path/to/your/config/files"
+[~/remote-repos/plasma] $ ls ${CONFIG_DOTS_REPO}
+akregatorrc                konsolerc         plasma-org.kde.plasma.desktop-appletsrc
+baloofilerc                konsolesshconfig  plasmarc
+dconf                      krunnerrc         plasmashellrc
+...
+[~/remote-repos/plasma] $
+```
 
 ## install
 - replace ```/opt/local/bin``` with anything you want, as long as it's present in $PATH.
