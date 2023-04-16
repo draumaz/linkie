@@ -2,9 +2,12 @@
 
 cd ${CONFIG_DOTS_REPO}
 
-git add *; git commit -m \
-  "automatically updated by linkie" > /dev/null 2>&1 && \
-    git push
+printf "[linkie] pushing changes... "
+git add *
+if git commit -m "automatically updated by linkie" \
+  > /dev/null 2>&1; then git push > /dev/null 2>&1; echo "done"; else
+    echo "nothing to push"
+fi
 
 printf "[linkie] relinking... "
 
