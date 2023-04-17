@@ -3,7 +3,7 @@
 
 ## prepare
 ```
-[~/remote-repos/plasma] $ export CONFIG_DOTS_REPO="/the/path/to/your/config/files"
+[~/remote-repos/plasma] $ export CONFIG_DOTS_REPO="/the/path/to/your/config/repo"
 [~/remote-repos/plasma] $ ls ${CONFIG_DOTS_REPO}
 akregatorrc                konsolerc         plasma-org.kde.plasma.desktop-appletsrc
 baloofilerc                konsolesshconfig  plasmarc
