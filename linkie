@@ -23,10 +23,11 @@ go() {
 selfup() {
   su -c "curl -sL \
   https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
-    tar -xpvzf - \
+    tar -xpzf - \
       --strip-components=1 \
       -C /usr/bin \
       linkie-main/linkie"
+  echo "[linkie] updated binary"
 }
 
 case $1 in
