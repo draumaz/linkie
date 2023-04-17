@@ -1,9 +1,23 @@
 # linkie
+```
+[~] $ linkie
+[linkie] pushing changes... nothing to push
+[linkie] relinking... done
+[~] $
+```
 - linkie is a tool that helps you implement a symlink-based ```~/.config``` dotfile management system.
+
+## function
+- linkie takes all top-level files and directories in a chosen repo and cleanly symlinks them into ```~/.config```.
+- it's particularly useful for quickly bootstrapping a DE with lots of disparate dotfiles, like KDE or GNOME.
+
+## prerequisites
+- ```$HOME/.config``` populated with dotfiles
+- ```${CONFIG_DOTS_REPO}``` exported to a repo containing the above dotfiles
 
 ## prepare
 ```
-[~/remote-repos/plasma] $ export CONFIG_DOTS_REPO="/the/path/to/your/config/files"
+[~/remote-repos/plasma] $ export CONFIG_DOTS_REPO="/the/path/to/your/config/repo"
 [~/remote-repos/plasma] $ ls ${CONFIG_DOTS_REPO}
 akregatorrc                konsolerc         plasma-org.kde.plasma.desktop-appletsrc
 baloofilerc                konsolesshconfig  plasmarc
@@ -13,27 +27,12 @@ dconf                      krunnerrc         plasmashellrc
 ```
 
 ## install
-- replace ```/opt/local/bin``` with anything you want, as long as it's present in $PATH.
+- replace ```$BIN``` with any path you'd  like, as long as it's present in ```$PATH```.
 ```
 curl -sL \
   https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
     tar -xpvzf - \
       --strip-components=1 \
-      -C "/opt/local/bin" \
+      -C $BIN \
       linkie-main/linkie
-```
-
-## usage
-```
-[~] $ linkie
-[linkie] relinking... done
-[~] $ for i in `find ~/.config`; do test -L $i && echo $i; done
-.config/dconf
-.config/konsolesshconfig
-.config/kactivitymanagerdrc # these now point to your repo!
-.config/README.md
-.config/ksmserverrc
-.config/ktimezonedrc
-...
-[~] $
 ```
