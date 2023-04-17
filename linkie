@@ -1,19 +1,35 @@
 #!/bin/sh -e
 
-cd ${CONFIG_DOTS_REPO}
+go() {
+  cd ${CONFIG_DOTS_REPO}
 
-printf "[linkie] pushing changes... "
-git add *
-if git commit -m "automatically updated by linkie" \
-  > /dev/null 2>&1; then git push > /dev/null 2>&1; echo "done"; else
-    echo "nothing to push"
-fi
+  printf "[linkie] pushing changes... "
+  git add *
+  if git commit -m "automatically updated by linkie" \
+    > /dev/null 2>&1; then git push > /dev/null 2>&1; echo "done"; else
+      echo "nothing to push"
+  fi
 
-printf "[linkie] relinking... "
+  printf "[linkie] relinking... "
 
-for SYM in `find $PWD -maxdepth 1 -not -name "*.git*" -and -not -path "$PWD" | sed "s|$PWD||g"`; do
-  ORIGIN="${CONFIG_DOTS_REPO}/${SYM}"; DEST="${HOME}/.config/${SYM}"
-  rm -rf ${DEST} || true; ln -sf ${ORIGIN} ${DEST} || { echo "failed at ${ORIGIN}" && exit 1; }
-done
+  for SYM in `find $PWD -maxdepth 1 -not -name "*.git*" -and -not -path "$PWD" | sed "s|$PWD||g"`; do
+    ORIGIN="${CONFIG_DOTS_REPO}/${SYM}"; DEST="${HOME}/.config/${SYM}"
+    rm -rf ${DEST} || true; ln -sf ${ORIGIN} ${DEST} || { echo "failed at ${ORIGIN}" && exit 1; }
+  done
 
-echo "done"
+  echo "done"
+}
+
+selfup() {
+  curl -sL \
+  https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
+    tar -xpvzf - \
+      --strip-components=1 \
+      -C /usr/bin \
+      linkie-main/linkie
+}
+
+case $1 in
+  selfup) selfup ;;
+  *) go ;;
+esac
