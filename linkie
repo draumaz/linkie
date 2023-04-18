@@ -21,7 +21,7 @@ go() {
   printf "[linkie] relinking... "
 
   for SYM in `find $PWD -maxdepth 1 -not -name "*.git*" -and -not -path "$PWD" | sed "s|$PWD||g"`; do
-    ORIGIN="${CONFIG_DOTS_REPO}/${SYM}"; DEST="${HOME}/.config/${SYM}"
+    ORIGIN="${CONFIG_DOTS_REPO}/${SYM}"; DEST="${CONFIG_PATH}/${SYM}"
     rm -rf ${DEST} || true; ln -sf ${ORIGIN} ${DEST} || { echo "failed at ${ORIGIN}" && exit 1; }
   done
 
@@ -29,12 +29,12 @@ go() {
 }
 
 selfup() {
-  su -c "ls -l /usr/bin/linkie && curl -L \
+  su -c "ls -l ${BIN_PATH}/linkie && curl -L \
   https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
     tar -xpzf - \
       --strip-components=1 \
-      -C /usr/bin \
-      linkie-main/linkie && ls -l /usr/bin/linkie"
+      -C ${BIN_PATH} \
+      linkie-main/linkie && ls -l ${BIN_PATH}/linkie"
 }
 
 case $1 in
