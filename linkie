@@ -1,5 +1,13 @@
 #!/bin/sh -e
 
+BIN_PATH="/usr/bin"
+CONFIG_PATH="${HOME}/.config"
+
+case ${CONFIG_DOTS_REPO} in "")
+  echo "[FATAL] export CONFIG_DOTS_REPO to a dotfile repository and retry."
+  exit 1
+esac
+
 go() {
   cd ${CONFIG_DOTS_REPO}
 
