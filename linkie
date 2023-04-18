@@ -21,13 +21,12 @@ go() {
 }
 
 selfup() {
-  su -c "curl -sL \
+  su -c "ls -l /usr/bin/linkie && curl -L \
   https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
     tar -xpzf - \
       --strip-components=1 \
       -C /usr/bin \
-      linkie-main/linkie"
-  echo "[linkie] updated /usr/bin/linkie"
+      linkie-main/linkie && ls -l /usr/bin/linkie"
 }
 
 case $1 in
