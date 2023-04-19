@@ -54,8 +54,8 @@ go() {
 
 selfup() {
   if which sudo > /dev/null 2>&1; then SOUP=sudo; else SOUP=""; fi
-  printf "${MSG_SELFUP_CURRENT}: `ls -l ${BIN_PATH}/linkie`\n${MSG_SELFUP_UP}... "
-  ${SOUP} su -c "curl -sL https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
+  printf "${MSG_SELFUP_CURRENT}: `ls -l ${BIN_PATH}/linkie`\n"
+  ${SOUP} su -c "printf '${MSG_SELFUP_UP}... '; curl -sL https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
     tar -xpzf - \
       --strip-components=1 \
       -C ${BIN_PATH} \
