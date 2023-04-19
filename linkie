@@ -29,12 +29,14 @@ go() {
 }
 
 selfup() {
-  su -c "ls -l ${BIN_PATH}/linkie && curl -L \
-  https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
+  if which sudo > /dev/null 2>&1; then SOUP=sudo; else SOUP=""; fi
+  printf "current binary: `ls -l ${BIN_PATH}/linkie`\nupdating... "
+  ${SOUP} su -c "curl -sL https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
     tar -xpzf - \
       --strip-components=1 \
       -C ${BIN_PATH} \
-      linkie-main/linkie && ls -l ${BIN_PATH}/linkie"
+      linkie-main/linkie"
+  printf "done\nupdated binary: `ls -l ${BIN_PATH}/linkie`\n"
 }
 
 case $1 in
