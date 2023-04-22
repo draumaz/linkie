@@ -37,10 +37,8 @@ go() {
 
   printf "[linkie] ${MSG_PUSH}... "
   git add *
-  if git commit -m ${MSG_PUSH_GIT} \
-    > /dev/null 2>&1; then git push > /dev/null 2>&1; echo ${MSG_END}; else
-      echo ${MSG_PUSH_FAIL}
-  fi
+  git commit -m ${MSG_PUSH_GIT} \
+    > /dev/null 2>&1; git push; echo ${MSG_END}
 
   printf "[linkie] ${MSG_RELINK}... "
 
