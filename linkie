@@ -35,11 +35,11 @@ case ${CONFIG_DOTS_REPO} in "") echo ${MSG_ERROR}; exit 1 ;; esac
 go() {
   cd ${CONFIG_DOTS_REPO}
 
-  printf "[linkie] ${MSG_PUSH}... "
   git add *
   git commit -m "${MSG_PUSH_GIT}" \
-    > /dev/null 2>&1 && git push > /dev/null 2>&1
-  echo ${MSG_END}
+    > /dev/null 2>&1 && \
+    printf "[linkie] ${MSG_PUSH}... " && \
+    git push > /dev/null 2>&1 && echo ${MSG_END}
 
   printf "[linkie] ${MSG_RELINK}... "
 
