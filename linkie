@@ -4,7 +4,7 @@ case ${LANG} in
   *eo*)
     MSG_ERROR="[FATALA] eksportu CONFIG_DOTS_REPO al dotfile-a deponejo kaj reprovu."
     MSG_PUSH="alŝuti dosierojn"
-    MSH_PUSH_GIT="aŭtomate ĝisdatiginta far linkie"
+    MSG_PUSH_GIT="aŭtomate ĝisdatiginta far linkie"
     MSG_PUSH_FAIL="nenio por alŝuti"
     MSG_RELINK="religado"
     MSG_RELINK_FAIL="malsukcesis ĉe"
