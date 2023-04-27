@@ -5,7 +5,7 @@
 [linkie] relinking... done
 [~] $
 ```
-- linkie is a tool that helps you implement a symlink-based ```~/.config``` dotfile management system.
+- linkie is a symlinker for dotfiles.
 
 ## function
 - linkie takes all top-level files and directories in a chosen repo and cleanly symlinks them into ```~/.config```.
@@ -16,6 +16,7 @@
 - ```${CONFIG_DOTS_REPO}``` exported to a repo containing the above dotfiles
 
 ## prepare
+- create a git repository containing the ```~/.config``` files you want symlinked.
 ```
 [~/remote-repos/plasma] $ export CONFIG_DOTS_REPO="/the/path/to/your/config/repo"
 [~/remote-repos/plasma] $ ls ${CONFIG_DOTS_REPO}
