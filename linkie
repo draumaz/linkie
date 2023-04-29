@@ -43,9 +43,14 @@ go() {
 
   printf "[linkie] ${MSG_RELINK}... "
 
-  for SYM in `find $PWD -maxdepth 1 -not -name "*.git*" -and -not -path "$PWD" | sed "s|$PWD||g"`; do
-    ORIGIN="${CONFIG_DOTS_REPO}/${SYM}"; DEST="${CONFIG_PATH}/${SYM}"
-    rm -rf ${DEST} || true; ln -sf ${ORIGIN} ${DEST} || { echo "${MSG_RELINK_FAIL} ${ORIGIN}" && exit 1; }
+  for SYM in `find $PWD \
+    -maxdepth 1 \
+    -not -name "*.git*" \
+    -and -not -name "README.md" \
+    -and -not -path "$PWD" | \
+    sed "s|$PWD||g"`; do
+      ORIGIN="${CONFIG_DOTS_REPO}/${SYM}"; DEST="${CONFIG_PATH}/${SYM}"
+      rm -rf ${DEST} || true; ln -sf ${ORIGIN} ${DEST} || { echo "${MSG_RELINK_FAIL} ${ORIGIN}" && exit 1; }
   done
 
   echo "${MSG_END}"
