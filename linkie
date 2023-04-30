@@ -57,14 +57,15 @@ go() {
 }
 
 selfup() {
-  if which sudo > /dev/null 2>&1; then SOUP=sudo; else SOUP=""; fi
-  printf "${MSG_SELFUP_CURRENT}: `ls -l ${BIN_PATH}/linkie`\n"
-  ${SOUP} su -c "printf '${MSG_SELFUP_UP}... '; curl -sL https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
+  if which sudo > /dev/null 2>&1; then SOUP=sudo;
+    else if which doas > /dev/null 2>&1; then SOUP=doas; else SOUP=""; fi fi
+  ls -l ${BIN_PATH}/linkie
+  ${SOUP} su -c "curl -sL https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
     tar -xpzf - \
       --strip-components=1 \
       -C ${BIN_PATH} \
       linkie-main/linkie"
-  printf "${MSG_END}\n${MSG_SELFUP_UPDATED}: `ls -l ${BIN_PATH}/linkie`\n"
+  ls -l ${BIN_PATH}/linkie
 }
 
 case $1 in
