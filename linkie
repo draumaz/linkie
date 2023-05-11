@@ -25,7 +25,7 @@ case ${LANG} in
   ;;
 esac
 
-MSG_PUSH_GIT="<linkie>"
+MSG_PUSH_GIT="<linkie> [`date -Is`]"
 
 BIN_PATH="/usr/bin"
 CONFIG_PATH="${HOME}/.config"
