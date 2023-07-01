@@ -36,10 +36,7 @@ go() {
   cd ${CONFIG_DOTS_REPO}
 
   git add *
-  git commit -m "${MSG_PUSH_GIT}" \
-    > /dev/null 2>&1 && \
-    printf "[linkie] ${MSG_PUSH}... " && \
-    git push > /dev/null 2>&1 && echo ${MSG_END}
+  git commit -m " ${MSG_PUSH_GIT}" && git push
 
   printf "[linkie] ${MSG_RELINK}... "
 
