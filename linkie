@@ -4,8 +4,6 @@ BIN_PATH="/usr/bin"
 MSG_PUSH_GIT="<linkie> [`date -Is`]"
 CONFIG_PATH="${HOME}/.config"
 
-CHANGELOG="fix typo in changelog"
-
 about() { ls -l ${BIN_PATH}/linkie; }
 
 case ${CONFIG_DOTS_REPO} in "") echo "export a CONFIG_DOTS_REPO and try again."; exit 1 ;; esac
@@ -36,8 +34,7 @@ selfup() {
     sudo tar -xpzf - \
       --strip-components=1 \
       -C ${BIN_PATH} \
-      linkie-main/linkie
-  about; printf "${CHANGELOG}\n"
+      linkie-main/linkie; about
 }
 
 case $1 in
