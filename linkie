@@ -45,9 +45,9 @@ go() {
     -not -name "*.git*" \
     -and -not -name "README.md" \
     -and -not -path "$PWD" | \
-    sed "s|$PWD||g"`; do
+    sed "s|$PWD||g" | cut -c2-`; do
       ORIGIN="${CONFIG_DOTS_REPO}/${SYM}"; DEST="${CONFIG_PATH}/${SYM}"
-      rm -rf ${DEST} || true; ln -sf ${ORIGIN} ${DEST} || { echo "${MSG_RELINK_FAIL} ${ORIGIN}" && exit 1; }
+      rm -rf ${DEST} || true; ln -svf ${ORIGIN} ${DEST} || { echo "${MSG_RELINK_FAIL} ${ORIGIN}" && exit 1; }
   done
 
   echo "${MSG_END}"
