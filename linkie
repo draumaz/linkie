@@ -1,29 +1,36 @@
 #!/bin/sh -e
 
-BIN_PATH="/usr/bin"
-MSG_PUSH_GIT="<linkie> [`date -Is`]"
-CONFIG_PATH="${HOME}/.config"
+case ${LINKIE_REPO} in
+  "") echo "=> [export a LINKIE_REPO (e.g. ~/repo.git) and try again]"; exit 1 ;;
+  *)  echo "=> LINKIE_REPO: [${LINKIE_REPO}]" ;;
+esac
 
-about() { ls -l ${BIN_PATH}/linkie; }
+case ${LINKIE_PATH} in
+  "") echo "=> [export a LINKIE_PATH (e.g. ~/.config) and try again]"; exit 1 ;;
+  *)  echo "=> LINKIE_PATH: [${LINKIE_PATH}]" ;;
+esac
 
-case ${CONFIG_DOTS_REPO} in "") echo "export a CONFIG_DOTS_REPO and try again."; exit 1 ;; esac
+case ${LINKIE_BIN_PATH} in "") LINKIE_BIN_PATH="/usr/bin" ;; esac
+case "${@}" in --verbose|-v) V="-v" ;; esac
+
+about() { ls -l "${LINKIE_BIN_PATH}/linkie"; }
 
 go() {
-  cd ${CONFIG_DOTS_REPO}
+  cd "${LINKIE_REPO}"
 
   git add *
-  git commit -m " ${MSG_PUSH_GIT}" && git push
+  git commit -m "<linkie [`date -Is`]" && git push
 
   printf "[linkie] linking... "
 
-  for SYM in `find $PWD \
+  for SYM in `find "${PWD}" \
     -maxdepth 1 \
     -not -name "*.git*" \
     -and -not -name "README.md" \
-    -and -not -path "$PWD" | \
+    -and -not -path "${PWD}" | \
     sed "s|$PWD||g" | cut -c2-`; do
-      ORIGIN="${CONFIG_DOTS_REPO}/${SYM}"; DEST="${CONFIG_PATH}/${SYM}"
-      rm -rf ${DEST} || true; ln -sf ${ORIGIN} ${DEST} || { echo "${MSG_RELINK_FAIL} ${ORIGIN}" && exit 1; }
+      ORIGIN="${LINKIE_REPO}/${SYM}"; DEST="${LINKIE_PATH}/${SYM}"
+      rm -rf "${DEST}" || true; ln -s ${V} -f "${ORIGIN}" "${DEST}" || { echo "${MSG_RELINK_FAIL} ${ORIGIN}" && exit 1; }
   done
 
   echo "done."
@@ -31,9 +38,9 @@ go() {
 
 selfup() {
   about; curl -sL https://github.com/draumaz/linkie/archive/refs/heads/main.tar.gz | \
-    sudo tar -xpzf - \
+    sudo tar ${V} -xpzf - \
       --strip-components=1 \
-      -C ${BIN_PATH} \
+      -C ${LINKIE_BIN_PATH} \
       linkie-main/linkie; about
 }
 
