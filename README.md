@@ -5,21 +5,21 @@
 [linkie] relinking... done
 [~] $
 ```
-- linkie is a symlinker for dotfiles.
+- symlink everything from $LINKIE_REPO to $LINKIE_PATH.
 
 ## function
-- linkie takes all top-level files and directories in a chosen repo and cleanly symlinks them into ```~/.config```.
+- linkie takes all top-level files and directories in a chosen repo and cleanly symlinks them into a chosen directory.
 - it's particularly useful for quickly bootstrapping a DE with lots of disparate dotfiles, like KDE or GNOME.
 
 ## prerequisites
-- ```$HOME/.config``` populated with dotfiles
-- ```${CONFIG_DOTS_REPO}``` exported to a repo containing the above dotfiles
+- ```${LINKIE_PATH}``` as a destination config folder, like ```~/.config```
+- ```${LINKIE_REPO}``` exported to a repo containing the above dotfiles
 
 ## prepare
 - create a git repository containing the ```~/.config``` files you want symlinked.
 ```
-[~/remote-repos/plasma] $ export CONFIG_DOTS_REPO="/the/path/to/your/config/repo"
-[~/remote-repos/plasma] $ ls ${CONFIG_DOTS_REPO}
+[~/remote-repos/plasma] $ export LINKIE_REPO="/the/path/to/your/config/repo"
+[~/remote-repos/plasma] $ ls ${LINKIE_REPO}
 akregatorrc                konsolerc         plasma-org.kde.plasma.desktop-appletsrc
 baloofilerc                konsolesshconfig  plasmarc
 dconf                      krunnerrc         plasmashellrc
