@@ -5,7 +5,7 @@
 [linkie] relinking... done
 [~] $
 ```
-- symlink everything from $LINKIE_REPO to $LINKIE_PATH.
+- symlink everything from $LINKIE_REPO into $LINKIE_PATH.
 
 ## function
 - linkie takes all top-level files and directories in a chosen repo and cleanly symlinks them into a chosen directory.
