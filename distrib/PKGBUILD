@@ -1,0 +1,24 @@
+pkgname="linkie"
+pkgver="1.1"
+pkgrel="1"
+pkgdesc="A program from the quisquiliarum repository."
+arch=("x86_64")
+url="https://github.com/draumaz/linkie"
+license=("GPL")
+makedepends=("git")
+
+source=("https://github.com/draumaz/${pkgname}/archive/refs/tags/${pkgver}.tar.gz")
+sha512sums=("65cd90c1bce573bc6c34b9e4cf691407feac65a8e7a9c58f03f9c358111bcda179812339af474c994dee4fd450c121dff9e64ac79307dadb48f0a8650962fd13")
+
+package() {
+  cd linkie-1.1
+  
+  mv -v "./linkie.sh" "./linkie"
+  chmod -v +x "${pkgname}"
+
+  install -v -dm755 "${pkgdir}/usr/bin"
+  install -v -dm755 "${pkgdir}/usr/share/man/man1"
+  
+  mv -v "${pkgname}" "${pkgdir}/usr/bin"
+  mv -v "${pkgname}.1" "${pkgdir}/usr/share/man/man1"
+}
