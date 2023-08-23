@@ -1,8 +1,8 @@
 pkgname="linkie"
 pkgver="1.1"
 pkgrel="1"
-pkgdesc="A program from the quisquiliarum repository."
-arch=("x86_64")
+pkgdesc="symlink everything from \$LINKIE_REPO into \$LINKIE_PATH."
+arch=("any")
 url="https://github.com/draumaz/linkie"
 license=("GPL")
 makedepends=("git")
