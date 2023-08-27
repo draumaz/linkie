@@ -7,11 +7,8 @@ url="https://github.com/draumaz/linkie"
 license=("GPL")
 makedepends=("git")
 
-source=("https://github.com/draumaz/${pkgname}/archive/refs/tags/${pkgver}.tar.gz")
-sha512sums=("65cd90c1bce573bc6c34b9e4cf691407feac65a8e7a9c58f03f9c358111bcda179812339af474c994dee4fd450c121dff9e64ac79307dadb48f0a8650962fd13")
-
 package() {
-  cd linkie-1.1
+  cd ../..
   
   mv -v "./linkie.sh" "./linkie"
   chmod -v +x "${pkgname}"
