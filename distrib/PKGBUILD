@@ -10,12 +10,12 @@ makedepends=("git")
 package() {
   cd ../..
   
-  mv -v "./linkie.sh" "./linkie"
+  cp -v "./linkie.sh" "./linkie"
   chmod -v +x "${pkgname}"
 
   install -v -dm755 "${pkgdir}/usr/bin"
   install -v -dm755 "${pkgdir}/usr/share/man/man1"
   
-  mv -v "${pkgname}" "${pkgdir}/usr/bin"
-  mv -v "${pkgname}.1" "${pkgdir}/usr/share/man/man1"
+  cp -v "${pkgname}" "${pkgdir}/usr/bin"
+  cp -v "${pkgname}.1" "${pkgdir}/usr/share/man/man1"
 }
