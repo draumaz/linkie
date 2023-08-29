@@ -1,5 +1,6 @@
 #!/bin/sh -e
 
+printf "===============\n"
 case ${LINKIE_REPO} in
   "") echo "=> [export a LINKIE_REPO (e.g. ~/repo.git) and try again]"; exit 1 ;;
   *)  echo "=> LINKIE_REPO: [${LINKIE_REPO}]" ;;
@@ -9,6 +10,7 @@ case ${LINKIE_PATH} in
   "") echo "=> [export a LINKIE_PATH (e.g. ~/.config) and try again]"; exit 1 ;;
   *)  echo "=> LINKIE_PATH: [${LINKIE_PATH}]" ;;
 esac
+printf "===============\n\n"
 
 case ${LINKIE_BIN_PATH} in "") LINKIE_BIN_PATH="/usr/bin" ;; esac
 case "${@}" in --verbose|-v) V="-v" ;; esac
