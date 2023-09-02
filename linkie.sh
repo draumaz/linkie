@@ -7,7 +7,7 @@ case ${LINKIE_REPO} in
 esac
 
 case "${0}" in *glinkie*)
-  printf "=> [glinkie mode]\n===========\n"
+  printf "=> [glinkie mode]\n==============\n"
   case "${1}" in
     sync|"")
       cd "${GLINKIE_REPO}"
