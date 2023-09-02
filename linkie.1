@@ -1,11 +1,14 @@
-.TH LINKIE "1" "Aug 2023" "linkie 1.1" "Utilities"
+.TH LINKIE "1" "Sep 2023" "linkie 1.2" "Utilities"
+
 .SH NAME
 linkie \- symlink everything from $LINKIE_REPO into $LINKIE_PATH.
+
 .SH SYNOPSIS
 .TP
 linkie takes all top-level files and directories in a chosen repo and cleanly symlinks them into a chosen directory.
 .TP
 it's particularly useful for quickly bootstrapping a DE with lots of disparate dotfiles, like KDE or GNOME.
+
 .SH ENVIRONMENT VARIABLES
 .TP
 \fB\/LINKIE_REPO\fR
@@ -13,5 +16,14 @@ a version-controlled directory containing your dotfiles.
 .TP
 \fB\/LINKIE_PATH\fR
 the path to symlink into, usually "${HOME}/.config".
+
+.SH MODES
+.TP
+\fB\/linkie -> linkie\fR
+standard operation.
+.TP
+\fB\/glinkie -> linkie\fR
+a GNOME-based config manager, using `dconf /org/gnome` as a base.
+
 .SH AUTHOR
 Written by draumaz.
