@@ -7,6 +7,7 @@ case ${LINKIE_REPO} in
 esac
 
 case "${0}" in *glinkie*)
+  printf "=============\n=> glinkie mode (GNOME)\n"
   case "${1}" in
     sync|"")
       cd "${GLINKIE_REPO}"
