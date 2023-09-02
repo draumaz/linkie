@@ -10,7 +10,7 @@ case "${0}" in *glinkie*)
   printf "=> [glinkie mode]\n===============\n"
   case "${1}" in
     sync|"")
-      cd "${GLINKIE_REPO}"
+      cd "${LINKIE_REPO}"
       dconf dump /org/gnome/ > gnome.ini
       git add *
       if git commit -m `date -Is`; then git push; fi
