@@ -6,25 +6,6 @@ case ${LINKIE_REPO} in
   *)  echo "=> LINKIE_REPO: [${LINKIE_REPO}]" ;;
 esac
 
-case "${0}" in *glinkie*)
-  printf "=> [glinkie mode]\n===============\n"
-  case "${1}" in
-    sync|"")
-      cd "${LINKIE_REPO}"
-      dconf dump /org/gnome/ > gnome.ini
-      git add *
-      if git commit -m `date -Is`; then git push; fi
-    ;;
-    restore)
-      dconf load /org/gnome/ < gnome.ini
-    ;;
-    help)
-      printf "add the following to your crontab.\n* * * * * $(realpath ${0}) sync\n"
-    ;;
-  esac
-  exit 0
-esac
-
 case ${LINKIE_PATH} in
   "") echo "=> [export a LINKIE_PATH (e.g. ~/.config) and try again]"; exit 1 ;;
   *)  echo "=> LINKIE_PATH: [${LINKIE_PATH}]" ;;
